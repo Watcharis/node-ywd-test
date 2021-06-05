@@ -1,0 +1,30 @@
+version: '3.1'
+
+services:
+  mariadb:
+    image: mariadb:10.3
+    container_name: mariadb-ywd
+    restart: always
+    ports: 
+      - 33066:3306
+    volumes: 
+      - ./databases_mariadb:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=yellow-idea
+
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin-ywd
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mariadb:3306
+    volumes:
+      - /sessions
+    depends_on: 
+      - mariadb
