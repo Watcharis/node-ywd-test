@@ -21,6 +21,7 @@ const initroute = new InitRoute(app)
 
 initroute.routeApi()
 
+
 app.listen(port, async() => {
     console.log(`app listening on port ${port}`)
 })

@@ -30,7 +30,7 @@ const addProduct = async(req, res) => {
                 saveProduct === "insert product success" ? res.status(200).json({messgae: "add product", status: "success", data: ""})
                 : HandleError.EchoError("add product fail")
             }else {
-                res.status(200).json({ message : "product is exists", status: "fail", })
+                res.status(200).json({ message : "product is exists", status: "fail", data: ""})
             }
         }else {
             throw new Error("product_point must more than zero and invalide format product_name")

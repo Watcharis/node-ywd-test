@@ -101,7 +101,6 @@ const exchange = async(req, res)=> {
 
         const checkExchange = await userProductRepository.findUserProductByUserId(req.body.user_id)
 
-        
         if (productPoint){
 
             if (checkExchange.length === 0){
@@ -115,7 +114,9 @@ const exchange = async(req, res)=> {
                     res.status(200).json({ message: "point not enought exchange fail", status: "fail", data: ""})
                 }
             }else {
-                const calculateProductExchange = checkExchange.map( eachProduct => eachProduct.dataValues.product.dataValues.product_point)
+                const calculateProductExchange = checkExchange.map( 
+                    eachProduct => eachProduct.dataValues.product.dataValues.product_point
+                )
                 .reduce((accumulator, currentValue)=> accumulator + currentValue)
 
                 if ((totalPoint - calculateProductExchange) > productPoint){
